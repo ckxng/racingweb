@@ -1,6 +1,7 @@
 // Copyright (c) 2022 Cameron King.
 // Dual licensed under MIT and GPLv2 with OpenSSL exception.
 // See LICENSE for details.
+//// @file
 
 #include <Wt/WApplication.h>
 #include <Wt/WBreak.h>
@@ -11,28 +12,31 @@
 
 #include <memory>
 
-/*
- * A simple hello world application class which demonstrates how to react
- * to events, read input, and give feed-back.
+/**
+ * @brief application state container class
  */
 class RacingWebApplication : public Wt::WApplication {
  public:
+  /**
+   * @brief initializes the application
+   * @param env application environment
+   */
   explicit RacingWebApplication(const Wt::WEnvironment &env);
 
  private:
+  /// @brief text box for number of cars to race
   Wt::WLineEdit *number_of_cars;
+  //// @brief text box for number of lanes on the track
   Wt::WLineEdit *number_of_lanes;
+  /// @brief output text containing schedule summary
   Wt::WText *schedule;
 
+  /**
+   * @brief generates the schedule and outputs schedule information
+   */
   void GenerateSchedule();
 };
 
-/*
- * The env argument contains information about the new session, and
- * the initial request. It must be passed to the WApplication
- * constructor so it is typically also an argument for your custom
- * application constructor.
- */
 RacingWebApplication::RacingWebApplication(const Wt::WEnvironment &env)
     : WApplication(env) {
   setTitle("Racing Web");
