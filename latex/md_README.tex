@@ -1,0 +1,31 @@
+\href{https://github.com/ckxng/racingweb/actions/workflows/main.yml}{\texttt{ }}\hypertarget{md_README_autotoc_md0}{}\doxysection{Racing Web}\label{md_README_autotoc_md0}
+Racing Web is an online tool for generating Perfect-\/N and Complimentary Perfect-\/N race schedules, and running the races live from a computer or smartphone.\hypertarget{md_README_autotoc_md1}{}\doxysubsection{Docs}\label{md_README_autotoc_md1}
+See \href{https://ckxng.github.io/racingweb/html/hierarchy.html}{\texttt{ https\+://ckxng.\+github.\+io/racingweb/html/hierarchy.\+html}}\hypertarget{md_README_autotoc_md2}{}\doxysubsection{Development}\label{md_README_autotoc_md2}
+This project is built on \href{https://www.webtoolkit.eu/wt}{\texttt{ Wt}}, which (at least to me) is somewhat difficult to manage in Windows. Therefore, this project targets mainly Linux hosts. The primary target is Ubuntu 20.\+04 AMD64, though if other architectures and target environments are feasible, pull requests to improve compatibility are always welcome. \begin{DoxyVerb}# build toolchain
+sudo apt install make cmake automake gcc g++
+
+# optional development tools
+sudo apt install gdb doxygen cppcheck clang clang-format clang-tidy llvm valgrind linux-tools-common
+sudo apt install python3-pip && sudo pip install pre-commit cpplint
+
+# download source
+git clone --recurse-submodules https://github.com/ckxng/racingweb.git
+cd racingweb
+pre-commit install # optional
+
+# witty and dependencies
+sudo apt install libboost-all-dev libgraphicsmagick-q16-3 libpq-dev libssl-dev libfcgi-dev
+cd dep/wt
+mkdir build; cd build
+cmake ..
+make
+make -C examples # optional
+sudo make install
+sudo ldconfig
+\end{DoxyVerb}
+ \hypertarget{md_README_autotoc_md3}{}\doxysubsection{Copying}\label{md_README_autotoc_md3}
+Copyright (c) 2022 \href{http://cameronking.me}{\texttt{ Cameron King}}. ~\newline
+ Dual licensed under MIT and GPLv2 with Open\+SSL exception. ~\newline
+ See LICENSE for details.
+
+In short, I prefer more permissive licenses, so the code specifically related to this project is released under the MIT license. This would allow any future developer to take portions of this project code and incorporate it into another project under the MIT license terms. However, since \href{https://www.webtoolkit.eu/wt}{\texttt{ Wt}} has been released under the GPLv2 license with an Open\+SSL exception, anyone who wishes to distribute binaries linked to the Wt libraries must do so under the terms of the GPLv2. 
