@@ -19,9 +19,8 @@ sudo apt install python3-pip &amp;&amp; sudo pip install pre-commit cpplint
 # download source
 git clone --recurse-submodules https://github.com/ckxng/racingweb.git
 cd racingweb
-pre-commit install # optional
 
-# witty and dependencies
+# Wt and dependencies
 sudo apt install libboost-all-dev libgraphicsmagick-q16-3 libpq-dev libssl-dev libfcgi-dev
 cd dep/wt
 mkdir build; cd build
@@ -30,7 +29,19 @@ make
 make -C examples # optional
 sudo make install
 sudo ldconfig
+cd ..
+
+# if you will be submitting changes, enable pre-commit
+pre-commit install
+pre-commit run
+
+# compile racingweb
+cmake .
 </code></pre>
+<h2>UI Sketches</h2>
+<p><img alt="Setup" src="img/racingweb-setup.png"></p>
+<p><img alt="Run" src="img/racingweb-run.png"></p>
+<p><img alt="Standings" src="img/racingweb-standings.png"></p>
 <h2>Copying</h2>
 <p>Copyright (c) 2022 <a href="http://cameronking.me">Cameron King</a>.<br>
 Dual licensed under MIT and GPLv2 with OpenSSL exception.<br>
