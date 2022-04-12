@@ -1,7 +1,7 @@
 // Copyright (c) 2022 Cameron King.
 // Dual licensed under MIT and GPLv2 with OpenSSL exception.
 // See LICENSE for details.
-//// @file
+/// @file
 
 #include <Wt/WApplication.h>
 #include <Wt/WBreak.h>
@@ -26,7 +26,7 @@ class RacingWebApplication : public Wt::WApplication {
  private:
   /// @brief text box for number of cars to race
   Wt::WLineEdit *number_of_cars;
-  //// @brief text box for number of lanes on the track
+  /// @brief text box for number of lanes on the track
   Wt::WLineEdit *number_of_lanes;
   /// @brief output text containing schedule summary
   Wt::WText *schedule;
