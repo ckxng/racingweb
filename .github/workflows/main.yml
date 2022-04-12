@@ -30,6 +30,8 @@ jobs:
       # gen docs
       - name: Create docs directory
         run: mkdir -p docs
+      - name: Copy images
+        run: cp -r img docs/
       - uses: ZacJW/markdown-html-action@1.1.0
         with:
           input_files: '[["README.md"]]'

@@ -25,9 +25,8 @@ architectures and target environments are feasible, pull requests to improve com
     # download source
     git clone --recurse-submodules https://github.com/ckxng/racingweb.git
     cd racingweb
-    pre-commit install # optional
 
-    # witty and dependencies
+    # Wt and dependencies
     sudo apt install libboost-all-dev libgraphicsmagick-q16-3 libpq-dev libssl-dev libfcgi-dev
     cd dep/wt
     mkdir build; cd build
@@ -36,6 +35,22 @@ architectures and target environments are feasible, pull requests to improve com
     make -C examples # optional
     sudo make install
     sudo ldconfig
+    cd ..
+
+    # if you will be submitting changes, enable pre-commit
+    pre-commit install
+    pre-commit run
+    
+    # compile racingweb
+    cmake .
+
+## UI Sketches
+
+![Setup](img/racingweb-setup.png)
+
+![Run](img/racingweb-run.png)
+
+![Standings](img/racingweb-standings.png)
 
 ## Copying
 
