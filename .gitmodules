@@ -1,0 +1,3 @@
+[submodule "dep/wt"]
+	path = dep/wt
+	url = https://github.com/emweb/wt.git

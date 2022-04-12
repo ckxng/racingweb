@@ -1,0 +1,48 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  ci:
+    runs-on: ubuntu-20.04
+    steps:
+      # checkout
+      - uses: actions/checkout@v2
+
+      # pre-commit check
+      - uses: actions/setup-python@v2
+      - name: Install packages
+        run: sudo apt-get update -y && sudo apt install -y cppcheck && sudo pip install cpplint
+      - uses: pre-commit/action@v2.0.3
+
+      # gen docs
+      - name: Create docs directory
+        run: mkdir -p docs
+      - uses: ZacJW/markdown-html-action@1.1.0
+        with:
+          input_files: '[["README.md"]]'
+          output_files: '["docs/index.html"]'
+          packages: 'pymdown-extensions'
+          extensions: '["pymdownx.extra"]'
+      - name: Doxygen Action
+        uses: mattnotmitt/doxygen-action@1.9.3
+
+      # publish docs
+      - name: GitHub Pages action
+        uses: peaceiris/actions-gh-pages@v3.7.3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs
+          commit_message: ${{ github.event.head_commit.message }}
