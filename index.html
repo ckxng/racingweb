@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<p><a href="https://github.com/ckxng/racingweb/actions/workflows/main.yml"><img alt="CI" src="https://github.com/ckxng/racingweb/actions/workflows/main.yml/badge.svg?branch=main"></a></p>
+<h1>Racing Web</h1>
+<p>Racing Web is an online tool for generating Perfect-N and Complimentary Perfect-N race schedules, and running the races
+live from a computer or smartphone.</p>
+<h2>Docs</h2>
+<p>See https://ckxng.github.io/racingweb/html/hierarchy.html</p>
+<h2>Development</h2>
+<p>This project is built on <a href="https://www.webtoolkit.eu/wt">Wt</a>, which (at least to me) is somewhat difficult to manage in
+Windows. Therefore, this project targets mainly Linux hosts. The primary target is Ubuntu 20.04 AMD64, though if other
+architectures and target environments are feasible, pull requests to improve compatibility are always welcome.</p>
+<pre><code># build toolchain
+sudo apt install make cmake automake gcc g++
+
+# optional development tools
+sudo apt install gdb doxygen cppcheck clang clang-format clang-tidy llvm valgrind linux-tools-common
+sudo apt install python3-pip &amp;&amp; sudo pip install pre-commit cpplint
+
+# download source
+git clone --recurse-submodules https://github.com/ckxng/racingweb.git
+cd racingweb
+pre-commit install # optional
+
+# witty and dependencies
+sudo apt install libboost-all-dev libgraphicsmagick-q16-3 libpq-dev libssl-dev libfcgi-dev
+cd dep/wt
+mkdir build; cd build
+cmake ..
+make
+make -C examples # optional
+sudo make install
+sudo ldconfig
+</code></pre>
+<h2>Copying</h2>
+<p>Copyright (c) 2022 <a href="http://cameronking.me">Cameron King</a>.<br>
+Dual licensed under MIT and GPLv2 with OpenSSL exception.<br>
+See LICENSE for details.</p>
+<p>In short, I prefer more permissive licenses, so the code specifically related to this project is released under the MIT
+license. This would allow any future developer to take portions of this project code and incorporate it into another
+project under the MIT license terms. However, since <a href="https://www.webtoolkit.eu/wt">Wt</a> has been released under the GPLv2
+license with an OpenSSL exception, anyone who wishes to distribute binaries linked to the Wt libraries must do so under
+the terms of the GPLv2.</p>
