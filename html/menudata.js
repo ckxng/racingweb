@@ -22,25 +22,12 @@
 
  @licend  The above is the entire license notice for the JavaScript code in this file
 */
-var NAVTREE =
-[
-  [ "Racing Web", "index.html", [
-    [ "Data Structures", "annotated.html", [
-      [ "Data Structures", "annotated.html", "annotated_dup" ],
-      [ "Data Structure Index", "classes.html", null ],
-      [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
-      [ "Data Fields", "functions.html", [
-        [ "All", "functions.html", null ],
-        [ "Functions", "functions_func.html", null ]
-      ] ]
-    ] ]
-  ] ]
-];
-
-var NAVTREEINDEX =
-[
-"annotated.html"
-];
-
-var SYNCONMSG = 'click to disable panel synchronisation';
-var SYNCOFFMSG = 'click to enable panel synchronisation';
+var menudata={children:[
+{text:"Main Page",url:"index.html"},
+{text:"Data Structures",url:"annotated.html",children:[
+{text:"Data Structures",url:"annotated.html"},
+{text:"Data Structure Index",url:"classes.html"},
+{text:"Class Hierarchy",url:"hierarchy.html"},
+{text:"Data Fields",url:"functions.html",children:[
+{text:"All",url:"functions.html"},
+{text:"Functions",url:"functions_func.html"}]}]}]}
