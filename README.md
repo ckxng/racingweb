@@ -2,12 +2,23 @@
 
 # Racing Web
 
-Racing Web is an online tool for generating Perfect-N and Complimentary Perfect-N race schedules, and running the races
-live from a computer or smartphone.
+Racing Web is an online tool for generating race schedules, and running the races live from a computer or smartphone.
+
+## Schedule Generation
+
+This race schedule generation method is inspired by
+the [Young and Pope Perfect-N Chart Generator](http://stanpope.net/ppngen.html).
+
+1. Ignore extra lanes when the number of lanes exceeds the number of cars
+2. Each car will race in each lane
+3. The number of heats is the same as the number of cars
+4. All lanes are used in each heat
+5. Heats are re-ordered to _try_ and avoid a car racing in two heats in a row
+6. Car order is offset slightly to encourage cars to race against different opponents
 
 ## Docs
 
-See https://ckxng.github.io/racingweb/html/hierarchy.html
+See generated [doxygen reference](https://ckxng.github.io/racingweb/html/hierarchy.html)
 
 ## Development
 
@@ -43,6 +54,16 @@ architectures and target environments are feasible, pull requests to improve com
     
     # compile racingweb
     cmake .
+
+## Running
+
+Depending on your IDE or build method, the racingweb executable might be located directly inside the git repo, or
+possible under a subdirectory created by CMake. These examples assume that the binary is directly inside the source
+repo, but you can adjust the commands depending on your environment.
+
+    cd racingweb
+    cp -r dep/wt/resources docroot/ # only do this one time
+    ./racingweb --docroot docroot --http-listen localhost:8080
 
 ## UI Sketches
 
