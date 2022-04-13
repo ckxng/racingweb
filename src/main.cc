@@ -7,6 +7,7 @@
 #include <Wt/WBreak.h>
 #include <Wt/WContainerWidget.h>
 #include <Wt/WGridLayout.h>
+#include <Wt/WHBoxLayout.h>
 #include <Wt/WLineEdit.h>
 #include <Wt/WMenuItem.h>
 #include <Wt/WPanel.h>
@@ -20,6 +21,7 @@
 #include <string>
 #include <utility>
 
+/// @brief a race participant
 struct Car {
   /**
    * @brief create a racer
@@ -52,6 +54,20 @@ struct Car {
   std::string driver = "";
 };
 
+/// @brief a single finish line result
+struct Result {
+  /**
+   * @brief create a single finish line result
+   * @param car the car that finished
+   * @param place what place that car came in
+   */
+  Result(Car *car, int place) : car(car), place(place) {}
+  /// @brief a pointer to the car in question
+  Car *car;
+  /// @brief what place did the car come in for this heat
+  int place;
+};
+
 /**
  * @brief application state container class
  */
@@ -82,29 +98,89 @@ class RacingWebApplication : public Wt::WApplication {
    */
   std::unique_ptr<Wt::WContainerWidget> BuildStandingsContainer();
 
+  /**
+   * @brief generates the schedule
+   *
+   * This method generates schedules where number_of_cars and number_of_lanes
+   * can have their text contents cast to and integer and
+   * 0 < number_of_cars and 0 < number_of_lanes <= number_of_cars.
+   * number_of_lanes will be capped to number_of_cars.  The roster and results
+   * data members are populated, and a schedule is created.
+   */
+  void GenerateSchedule();
+
+  /**
+   * @brief sets current_heat and updates related text
+   *
+   * Updates the current_heat member and text elements on the run_tab related
+   * to the current heat.  Takes no action if given an invalid heat.
+   *
+   * @param heat the current heat where 0 <= heat < schedule.size()
+   */
+  void SetCurrentHeat(int heat);
+
+  /**
+   * @brief determine which heat will run next
+   * @return the next index in results with size() == 0 or -1 if none
+   */
+  [[nodiscard]] int IdentifyNextHeat() const;
+
+  /**
+   * @brief determine which heat will run next
+   * @return the second index in results with size() == 0 or -1 if none
+   */
+  [[nodiscard]] int IdentifyHeatOnDeck() const;
+
   /// @brief text box for number of cars to race
   Wt::WLineEdit *number_of_cars;
+
   /// @brief text box for number of lanes on the track
   Wt::WLineEdit *number_of_lanes;
+
   /// @brief output text containing schedule_text summary
   Wt::WText *schedule_text;
+
   /// @brief collection of main tabs
   Wt::WTabWidget *tabs;
+
   /// @brief setup tab
   Wt::WMenuItem *setup_tab;
+
   /// @brief run tab
   Wt::WMenuItem *run_tab;
+
   /// @brief standings tab
   Wt::WMenuItem *standings_tab;
+
   /// @brief the cars that will be raced
   std::vector<Car> roster;
+
   /// @brief the race schedule, with pointers to cars on the roster
   std::vector<std::vector<Car *>> schedule;
 
   /**
-   * @brief generates the schedule_text and outputs schedule_text information
+   * @brief the finish line results
+   *
+   * The correct number of heats are pre-created when the schedule is
+   * generated.  A heat with a result length of zero indicatees a heat which
+   * has not been run yet.
    */
-  void GenerateSchedule();
+  std::vector<std::vector<Result>> results;
+
+  /// @brief what heat are we currently on (0-indexed, to match schedule)
+  int current_heat = 0;
+
+  /// @brief the title of the run container
+  Wt::WText *run_title;
+
+  /// @brief the grid layout for the current heat lineup
+  Wt::WGridLayout *lineup_grid_layout;
+
+  /// @brief the grid layout for placing cars to indicate results
+  Wt::WGridLayout *place_grid_layout;
+
+  /// @brief the output text previewing the lineup for the next heat
+  Wt::WText *heat_preview_text;
 };
 
 RacingWebApplication::RacingWebApplication(const Wt::WEnvironment &env)
@@ -119,8 +195,10 @@ RacingWebApplication::RacingWebApplication(const Wt::WEnvironment &env)
   run_tab = tabs->addTab(BuildRunContainer(), "Run");
   standings_tab = tabs->addTab(BuildStandingsContainer(), "Standings");
 
-  // start with the setup tab visible
+  // start with the setup tab visible, and others disabled
   setup_tab->select();
+  run_tab->disable();
+  standings_tab->disable();
 }
 
 bool DoAnyCarsMatch(std::vector<Car *> const &a, std::vector<Car *> const &b) {
@@ -169,8 +247,12 @@ void RacingWebApplication::GenerateSchedule() {
   }
 
   // all cars must be created before generating the race schedule
+  // take this opportunity to reset the results as well
+  roster = {};
+  results = {};
   for (int i = 0; i < cars; i++) {
     roster.emplace_back(i + 1);
+    results.emplace_back(std::vector<Result>());
   }
 
   // generate the race schedule
@@ -211,6 +293,7 @@ void RacingWebApplication::GenerateSchedule() {
     initial_schedule.erase(initial_schedule.begin() + next_heat);
   }
 
+  // display the standings
   for (int i = 0; i < cars; i++) {
     schedule_summary << "Heat " << i + 1 << ": ";
     for (int lane = 0; lane < lanes; lane++) {
@@ -218,8 +301,12 @@ void RacingWebApplication::GenerateSchedule() {
     }
     schedule_summary << "<br />";
   }
-
   schedule_text->setText(schedule_summary.str());
+
+  // update the current heat and enable run and standings tabs
+  SetCurrentHeat(0);
+  run_tab->enable();
+  standings_tab->enable();
 }
 
 std::unique_ptr<Wt::WContainerWidget>
@@ -269,7 +356,21 @@ RacingWebApplication::BuildRunContainer() {
   auto container = std::make_unique<Wt::WContainerWidget>();
   container->setPadding(Wt::WLength(10), Wt::AllSides);
 
-  container->addWidget(std::make_unique<Wt::WText>("Run container"));
+  // basic vertical layout
+  auto vert_layout = container->setLayout(std::make_unique<Wt::WVBoxLayout>());
+  run_title = vert_layout->addWidget(std::make_unique<Wt::WText>());
+  run_title->setHtmlTagName("h1");
+
+  // lay out the lineup in a grid
+  lineup_grid_layout =
+      vert_layout->addLayout(std::make_unique<Wt::WGridLayout>());
+
+  // lay out the place indicator in a grid
+  place_grid_layout =
+      vert_layout->addLayout(std::make_unique<Wt::WGridLayout>());
+
+  // add sneak peek of the next heat lineup
+  heat_preview_text = vert_layout->addWidget(std::make_unique<Wt::WText>(""));
 
   return container;
 }
@@ -279,9 +380,68 @@ RacingWebApplication::BuildStandingsContainer() {
   auto container = std::make_unique<Wt::WContainerWidget>();
   container->setPadding(Wt::WLength(10), Wt::AllSides);
 
-  container->addWidget(std::make_unique<Wt::WText>("Standings container"));
+  // basic vertical layout
+  auto vert_layout = container->setLayout(std::make_unique<Wt::WVBoxLayout>());
+  vert_layout->addWidget(std::make_unique<Wt::WText>("Standings"))
+      ->setHtmlTagName("h1");
 
   return container;
+}
+
+void RacingWebApplication::SetCurrentHeat(int heat) {
+  if (heat < 0 || heat > schedule.size()) {
+    return;
+  }
+  current_heat = heat;
+
+  // set title for run tab
+  run_title->setText("Heat " + std::to_string(current_heat + 1) + " of " +
+                     std::to_string(schedule.size()));
+
+  // build heat lineup for run tab
+  // lineup_grid_layout
+
+  // build place indicator for run tab
+  // place_grid_layout
+
+  // update preview of next heat
+  auto on_deck = IdentifyHeatOnDeck();
+  if (on_deck >= 0) {
+    auto preview_builder = std::stringstream();
+    preview_builder << "Next - Heat " << std::to_string(on_deck + 1) << ": ";
+    for (int i = 0; i < schedule[on_deck].size(); i++) {
+      if (i != 0) {
+        preview_builder << ", ";
+      }
+      preview_builder << schedule[on_deck][i]->number;
+    }
+    heat_preview_text->setText(preview_builder.str());
+  } else {
+    heat_preview_text->setText("No more heats to run");
+  }
+}
+
+int RacingWebApplication::IdentifyNextHeat() const {
+  for (int i = 0; i < results.size(); i++) {
+    if (results[i].empty()) {
+      return i;
+    }
+  }
+  return -1;
+}
+
+int RacingWebApplication::IdentifyHeatOnDeck() const {
+  auto found_first = false;
+  for (int i = 0; i < results.size(); i++) {
+    if (results[i].empty()) {
+      if (found_first) {
+        return i;
+      } else {
+        found_first = true;
+      }
+    }
+  }
+  return -1;
 }
 
 int main(int argc, char **argv) {
