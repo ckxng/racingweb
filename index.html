@@ -1,10 +1,20 @@
 <!DOCTYPE html>
 <p><a href="https://github.com/ckxng/racingweb/actions/workflows/main.yml"><img alt="CI" src="https://github.com/ckxng/racingweb/actions/workflows/main.yml/badge.svg?branch=main"></a></p>
 <h1>Racing Web</h1>
-<p>Racing Web is an online tool for generating Perfect-N and Complimentary Perfect-N race schedules, and running the races
-live from a computer or smartphone.</p>
+<p>Racing Web is an online tool for generating race schedules, and running the races live from a computer or smartphone.</p>
+<h2>Schedule Generation</h2>
+<p>This race schedule generation method is inspired by
+the <a href="http://stanpope.net/ppngen.html">Young and Pope Perfect-N Chart Generator</a>.</p>
+<ol>
+<li>Ignore extra lanes when the number of lanes exceeds the number of cars</li>
+<li>Each car will race in each lane</li>
+<li>The number of heats is the same as the number of cars</li>
+<li>All lanes are used in each heat</li>
+<li>Heats are re-ordered to <em>try</em> and avoid a car racing in two heats in a row</li>
+<li>Car order is offset slightly to encourage cars to race against different opponents</li>
+</ol>
 <h2>Docs</h2>
-<p>See https://ckxng.github.io/racingweb/html/hierarchy.html</p>
+<p>See generated <a href="https://ckxng.github.io/racingweb/html/hierarchy.html">doxygen reference</a></p>
 <h2>Development</h2>
 <p>This project is built on <a href="https://www.webtoolkit.eu/wt">Wt</a>, which (at least to me) is somewhat difficult to manage in
 Windows. Therefore, this project targets mainly Linux hosts. The primary target is Ubuntu 20.04 AMD64, though if other
@@ -37,6 +47,14 @@ pre-commit run
 
 # compile racingweb
 cmake .
+</code></pre>
+<h2>Running</h2>
+<p>Depending on your IDE or build method, the racingweb executable might be located directly inside the git repo, or
+possible under a subdirectory created by CMake. These examples assume that the binary is directly inside the source
+repo, but you can adjust the commands depending on your environment.</p>
+<pre><code>cd racingweb
+cp -r dep/wt/resources docroot/ # only do this one time
+./racingweb --docroot docroot --http-listen localhost:8080
 </code></pre>
 <h2>UI Sketches</h2>
 <p><img alt="Setup" src="img/racingweb-setup.png"></p>

@@ -1,15 +1,22 @@
 var NAVTREEINDEX0 =
 {
 "annotated.html":[0,0],
-"class_racing_web_application.html":[0,0,0],
-"class_racing_web_application.html#a0d83483000fecd66f59cb2e47090e0a5":[0,0,0,0],
+"class_racing_web_application.html":[0,0,1],
+"class_racing_web_application.html#a0d83483000fecd66f59cb2e47090e0a5":[0,0,1,0],
 "classes.html":[0,1],
 "dir_68267d1309a1af8e8297ef4c3efbcdba.html":[1,0,0],
 "files.html":[1,0],
 "functions.html":[0,3,0],
 "functions_func.html":[0,3,1],
+"functions_vars.html":[0,3,2],
 "hierarchy.html":[0,2],
 "index.html":[],
 "main_8cc.html":[1,0,0,0],
-"pages.html":[]
+"pages.html":[],
+"struct_car.html":[0,0,0],
+"struct_car.html#a514d01a5b4eb806475b3146773158f5f":[0,0,0,3],
+"struct_car.html#a64af67b1181815acb2c346d23800990a":[0,0,0,4],
+"struct_car.html#ac701a3e86e578fdbfcf59587d8fd1e2f":[0,0,0,2],
+"struct_car.html#adca9677f66b9be8a1e248ab781f675e0":[0,0,0,0],
+"struct_car.html#af91fbd1e645eb4d5bb1adb689bb07a77":[0,0,0,1]
 };
