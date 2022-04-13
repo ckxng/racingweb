@@ -18,5 +18,9 @@ var NAVTREEINDEX0 =
 "struct_car.html#a64af67b1181815acb2c346d23800990a":[0,0,0,4],
 "struct_car.html#ac701a3e86e578fdbfcf59587d8fd1e2f":[0,0,0,2],
 "struct_car.html#adca9677f66b9be8a1e248ab781f675e0":[0,0,0,0],
-"struct_car.html#af91fbd1e645eb4d5bb1adb689bb07a77":[0,0,0,1]
+"struct_car.html#af91fbd1e645eb4d5bb1adb689bb07a77":[0,0,0,1],
+"struct_result.html":[0,0,2],
+"struct_result.html#a74fd8bee47118ffc5d4f0a1081ce92d3":[0,0,2,2],
+"struct_result.html#a86a360e0d9a25360df6d65ee15245956":[0,0,2,0],
+"struct_result.html#ab04b27c7351b20b4907bb89547adadf5":[0,0,2,1]
 };
