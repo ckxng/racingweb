@@ -57,7 +57,7 @@ RacingWebApplication::BuildRunContainer() {
   run_title->setHtmlTagName("h1");
 
   // lay out the lineup in a grid
-  lineup_grid_container =
+  lineup_container =
       vert_layout->addWidget(std::make_unique<Wt::WContainerWidget>());
 
   // add sneak peek of the next heat lineup
@@ -75,6 +75,10 @@ RacingWebApplication::BuildStandingsContainer() {
   auto vert_layout = container->setLayout(std::make_unique<Wt::WVBoxLayout>());
   vert_layout->addWidget(std::make_unique<Wt::WText>("Standings"))
       ->setHtmlTagName("h1");
+
+  // lay out the lineup in a grid
+  standings_container =
+      vert_layout->addWidget(std::make_unique<Wt::WContainerWidget>());
 
   return container;
 }

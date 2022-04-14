@@ -17,10 +17,13 @@
 #include <Wt/WText.h>
 #include <Wt/WVBoxLayout.h>
 
+#include <algorithm>
 #include <climits>
+#include <map>
 #include <memory>
 #include <sstream>
 #include <string>
+#include <utility>
 #include <vector>
 
 #include "src/Car.h"
@@ -63,6 +66,19 @@ class RacingWebApplication : public Wt::WApplication {
   void UpdateLineupContainer();
 
   /**
+   * @brief read results and return an ordered vector of winners
+   *
+   * the car in index 0 came in first place, index 1 is second place, and so on
+   * @return the ordered list of winners
+   */
+  std::vector<const Car *> CalculateFinalStandings();
+
+  /**
+   * @brief read the results and update the standings tab
+   */
+  void UpdateStandingsContainer();
+
+  /**
    * @brief generates the schedule
    *
    * This method generates schedules where number_of_cars and number_of_lanes
@@ -82,6 +98,14 @@ class RacingWebApplication : public Wt::WApplication {
    * @param heat the current heat where 0 <= heat < schedule.size()
    */
   void SetCurrentHeat(int heat);
+
+  /**
+   * @brief update the ui to indicate the race is over
+   *
+   * resets the contents of the run tab to show the race is finished and
+   * progress to the standings tab
+   */
+  void FinishRacing();
 
   /**
    * marks the place of a car in the current heat
@@ -145,7 +169,10 @@ class RacingWebApplication : public Wt::WApplication {
   Wt::WText *run_title;
 
   /// @brief the grid container for the current heat lineup
-  Wt::WContainerWidget *lineup_grid_container;
+  Wt::WContainerWidget *lineup_container;
+
+  /// @brief the grid container for the current heat lineup
+  Wt::WContainerWidget *standings_container;
 
   /// @brief the output text previewing the lineup for the next heat
   Wt::WText *heat_preview_text;

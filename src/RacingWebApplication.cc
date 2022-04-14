@@ -118,10 +118,17 @@ void RacingWebApplication::GenerateSchedule() {
   run_tab->enable();
   standings_tab->enable();
   run_tab->select();
+
+  // once generated, page should be reloaded to change the number of lanes
+  // to start from a clean slate
+  number_of_lanes->disable();
 }
 
 void RacingWebApplication::SetCurrentHeat(int heat) {
+  // if the heat value is negative or exceeds size, then we must be done
+  // racing.  update the UI to indicate that.
   if (heat < 0 || heat > schedule.size()) {
+    FinishRacing();
     return;
   }
   current_heat = heat;
@@ -176,11 +183,11 @@ int RacingWebApplication::IdentifyHeatOnDeck() const {
 void RacingWebApplication::UpdateLineupContainer() {
   auto lanes = static_cast<int>(schedule[current_heat].size() & INT_MAX);
 
-  lineup_grid_container->clear();
+  lineup_container->clear();
 
   // lay out the lineup in a grid
   auto lineup_grid_layout =
-      lineup_grid_container->setLayout(std::make_unique<Wt::WGridLayout>());
+      lineup_container->setLayout(std::make_unique<Wt::WGridLayout>());
 
   // set the last column to take up all excess space
   lineup_grid_layout->setColumnStretch(0, 0);  // lane
@@ -293,4 +300,88 @@ void RacingWebApplication::MarkPlace(const Car &car, const int lane,
   if (!any_results_open) {
     accept_results_button->enable();
   }
+}
+void RacingWebApplication::FinishRacing() {
+  run_title->setText("Finished");
+  lineup_container->clear();
+  lineup_container->addWidget(std::make_unique<Wt::WText>("Done racing!"));
+
+  UpdateStandingsContainer();
+  standings_tab->select();
+}
+
+void RacingWebApplication::UpdateStandingsContainer() {
+  standings_container->clear();
+
+  // lay out the standings in a grid
+  auto standings_grid_layout =
+      standings_container->setLayout(std::make_unique<Wt::WGridLayout>());
+
+  // set the last column to take up all excess space
+  standings_grid_layout->setColumnStretch(0, 0);  // place
+  standings_grid_layout->setColumnStretch(1, 0);  // car number
+  standings_grid_layout->setColumnStretch(2, 0);  // car name
+  standings_grid_layout->setColumnStretch(3, 0);  // driver name
+  standings_grid_layout->setColumnStretch(4, 100);
+
+  auto final_standings = CalculateFinalStandings();
+
+  // read the schedule data and fill in the grid layout
+  auto show_car_name{false}, show_driver_name{false};
+  for (int i = 0; i < final_standings.size(); i++) {
+    standings_grid_layout->addWidget(
+        std::make_unique<Wt::WText>(std::to_string(i + 1)), i + 1, 0);
+    standings_grid_layout->addWidget(
+        std::make_unique<Wt::WText>(final_standings[i]->number), i + 1, 1);
+    if (!final_standings[i]->car.empty()) {
+      show_car_name = true;
+      standings_grid_layout->addWidget(
+          std::make_unique<Wt::WText>(final_standings[i]->car), i + 1, 2);
+    }
+    if (!final_standings[i]->driver.empty()) {
+      show_driver_name = true;
+      standings_grid_layout->addWidget(
+          std::make_unique<Wt::WText>(final_standings[i]->driver), i + 1, 3);
+    }
+  }
+
+  // first row - do this last so we can hide unused columns
+  standings_grid_layout->addWidget(std::make_unique<Wt::WText>("Place"), 0, 0);
+  standings_grid_layout->addWidget(std::make_unique<Wt::WText>("Car"), 0, 1);
+  if (show_car_name) {
+    standings_grid_layout->addWidget(std::make_unique<Wt::WText>("Name"), 0, 2);
+  }
+  if (show_driver_name) {
+    standings_grid_layout->addWidget(std::make_unique<Wt::WText>("Driver"), 0,
+                                     3);
+  }
+  // add blank text so last column will stretch
+  standings_grid_layout->addWidget(std::make_unique<Wt::WText>(), 0, 4);
+}
+std::vector<const Car *> RacingWebApplication::CalculateFinalStandings() {
+  auto final_standings = std::vector<const Car *>();
+  for (const auto &item : roster) {
+    // cppcheck-suppress useStlAlgorithm
+    // not transforming
+    final_standings.emplace_back(&item);
+  }
+
+  // create map to store score calculations in
+  auto scores = std::map<const Car *, int>();
+  std::for_each(roster.begin(), roster.end(),
+                [&scores](const auto &x) { scores[&x] = 0; });
+
+  // add up the results
+  for (const auto &heat : results) {
+    std::for_each(heat.begin(), heat.end(),
+                  [&scores](const auto &x) { scores[x->car] += x->place; });
+  }
+
+  // final standings sort
+  std::sort(final_standings.begin(), final_standings.end(),
+            [&scores](const auto &a, const auto &b) {
+              return scores[a] < scores[b];
+            });
+
+  return std::move(final_standings);
 }
