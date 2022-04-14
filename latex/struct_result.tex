@@ -5,16 +5,20 @@
 a single finish line result  
 
 
+
+
+{\ttfamily \#include $<$Result.\+h$>$}
+
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{struct_result_a86a360e0d9a25360df6d65ee15245956}{Result}} (\mbox{\hyperlink{struct_car}{Car}} $\ast$\mbox{\hyperlink{struct_result_ab04b27c7351b20b4907bb89547adadf5}{car}}, int \mbox{\hyperlink{struct_result_a74fd8bee47118ffc5d4f0a1081ce92d3}{place}})
+\mbox{\hyperlink{struct_result_a165b96c674c3486df52e860684d48d4f}{Result}} (const \mbox{\hyperlink{struct_car}{Car}} \&\mbox{\hyperlink{struct_result_a1b45c5dd419d04e68b040f85035e6804}{car}}, const int \mbox{\hyperlink{struct_result_a74fd8bee47118ffc5d4f0a1081ce92d3}{place}})
 \begin{DoxyCompactList}\small\item\em create a single finish line result \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Data Fields}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{struct_result_ab04b27c7351b20b4907bb89547adadf5}\label{struct_result_ab04b27c7351b20b4907bb89547adadf5}} 
-\mbox{\hyperlink{struct_car}{Car}} $\ast$ {\bfseries car}
+\mbox{\Hypertarget{struct_result_a1b45c5dd419d04e68b040f85035e6804}\label{struct_result_a1b45c5dd419d04e68b040f85035e6804}} 
+const \mbox{\hyperlink{struct_car}{Car}} $\ast$ {\bfseries car}
 \begin{DoxyCompactList}\small\item\em a pointer to the car in question \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{struct_result_a74fd8bee47118ffc5d4f0a1081ce92d3}\label{struct_result_a74fd8bee47118ffc5d4f0a1081ce92d3}} 
 int {\bfseries place}
@@ -25,11 +29,11 @@ int {\bfseries place}
 a single finish line result 
 
 \doxysubsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{struct_result_a86a360e0d9a25360df6d65ee15245956}\label{struct_result_a86a360e0d9a25360df6d65ee15245956}} 
+\mbox{\Hypertarget{struct_result_a165b96c674c3486df52e860684d48d4f}\label{struct_result_a165b96c674c3486df52e860684d48d4f}} 
 \index{Result@{Result}!Result@{Result}}
 \index{Result@{Result}!Result@{Result}}
 \doxysubsubsection{\texorpdfstring{Result()}{Result()}}
-{\footnotesize\ttfamily Result\+::\+Result (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_car}{Car}} $\ast$}]{car,  }\item[{int}]{place }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily Result\+::\+Result (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_car}{Car}} \&}]{car,  }\item[{const int}]{place }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -46,4 +50,4 @@ create a single finish line result
 
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-src/\mbox{\hyperlink{main_8cc}{main.\+cc}}\end{DoxyCompactItemize}
+src/Result.\+h\end{DoxyCompactItemize}

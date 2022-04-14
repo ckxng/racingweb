@@ -1,0 +1,37 @@
+\hypertarget{_car_8h_source}{}\doxysection{Car.\+h}
+\label{_car_8h_source}\index{src/Car.h@{src/Car.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{// Copyright (c) 2022 Cameron King.}}
+\DoxyCodeLine{2 \textcolor{comment}{// Dual licensed under MIT and GPLv2 with OpenSSL exception.}}
+\DoxyCodeLine{3 \textcolor{comment}{// See LICENSE for details.}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#ifndef RACINGWEB\_SRC\_CAR\_H\_}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#define RACINGWEB\_SRC\_CAR\_H\_}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <utility>}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{12 \textcolor{keyword}{struct }\mbox{\hyperlink{struct_car}{Car}} \{}
+\DoxyCodeLine{19   \textcolor{keyword}{explicit} \mbox{\hyperlink{struct_car_a34ad0e0925973da2d52afcd416775ae9}{Car}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} \mbox{\hyperlink{struct_car_a64af67b1181815acb2c346d23800990a}{number}}, \textcolor{keyword}{const} std::string \&\mbox{\hyperlink{struct_car_ac701a3e86e578fdbfcf59587d8fd1e2f}{car}} = \textcolor{stringliteral}{"{}"{}},}
+\DoxyCodeLine{20                \textcolor{keyword}{const} std::string \&\mbox{\hyperlink{struct_car_a514d01a5b4eb806475b3146773158f5f}{driver}} = \textcolor{stringliteral}{"{}"{}}) \{}
+\DoxyCodeLine{21     this-\/>number = std::to\_string(\mbox{\hyperlink{struct_car_a64af67b1181815acb2c346d23800990a}{number}});}
+\DoxyCodeLine{22     this-\/>\mbox{\hyperlink{struct_car_ac701a3e86e578fdbfcf59587d8fd1e2f}{car}} = \mbox{\hyperlink{struct_car_ac701a3e86e578fdbfcf59587d8fd1e2f}{car}};}
+\DoxyCodeLine{23     this-\/>\mbox{\hyperlink{struct_car_a514d01a5b4eb806475b3146773158f5f}{driver}} = \mbox{\hyperlink{struct_car_a514d01a5b4eb806475b3146773158f5f}{driver}};}
+\DoxyCodeLine{24   \}}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{32   \textcolor{keyword}{explicit} \mbox{\hyperlink{struct_car_a14efed2d4473a9a58ec8266507a87c3b}{Car}}(\textcolor{keyword}{const} std::string \&\mbox{\hyperlink{struct_car_a64af67b1181815acb2c346d23800990a}{number}}, \textcolor{keyword}{const} std::string \&\mbox{\hyperlink{struct_car_ac701a3e86e578fdbfcf59587d8fd1e2f}{car}} = \textcolor{stringliteral}{"{}"{}},}
+\DoxyCodeLine{33                \textcolor{keyword}{const} std::string \&\mbox{\hyperlink{struct_car_a514d01a5b4eb806475b3146773158f5f}{driver}} = \textcolor{stringliteral}{"{}"{}}) \{}
+\DoxyCodeLine{34     this-\/>number = \mbox{\hyperlink{struct_car_a64af67b1181815acb2c346d23800990a}{number}};}
+\DoxyCodeLine{35     this-\/>\mbox{\hyperlink{struct_car_ac701a3e86e578fdbfcf59587d8fd1e2f}{car}} = \mbox{\hyperlink{struct_car_ac701a3e86e578fdbfcf59587d8fd1e2f}{car}};}
+\DoxyCodeLine{36     this-\/>\mbox{\hyperlink{struct_car_a514d01a5b4eb806475b3146773158f5f}{driver}} = \mbox{\hyperlink{struct_car_a514d01a5b4eb806475b3146773158f5f}{driver}};}
+\DoxyCodeLine{37   \}}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{40   std::string \mbox{\hyperlink{struct_car_a64af67b1181815acb2c346d23800990a}{number}};}
+\DoxyCodeLine{42   std::string \mbox{\hyperlink{struct_car_ac701a3e86e578fdbfcf59587d8fd1e2f}{car}} = \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{44   std::string \mbox{\hyperlink{struct_car_a514d01a5b4eb806475b3146773158f5f}{driver}} = \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{45 \};}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47 \textcolor{preprocessor}{\#endif  }\textcolor{comment}{// RACINGWEB\_SRC\_CAR\_H\_}}
+
+\end{DoxyCode}

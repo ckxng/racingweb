@@ -5,12 +5,16 @@
 a race participant  
 
 
+
+
+{\ttfamily \#include $<$Car.\+h$>$}
+
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{struct_car_adca9677f66b9be8a1e248ab781f675e0}{Car}} (int \mbox{\hyperlink{struct_car_a64af67b1181815acb2c346d23800990a}{number}}, std\+::string \mbox{\hyperlink{struct_car_ac701a3e86e578fdbfcf59587d8fd1e2f}{car}}=\char`\"{}\char`\"{}, std\+::string \mbox{\hyperlink{struct_car_a514d01a5b4eb806475b3146773158f5f}{driver}}=\char`\"{}\char`\"{})
+\mbox{\hyperlink{struct_car_a34ad0e0925973da2d52afcd416775ae9}{Car}} (const int \mbox{\hyperlink{struct_car_a64af67b1181815acb2c346d23800990a}{number}}, const std\+::string \&\mbox{\hyperlink{struct_car_ac701a3e86e578fdbfcf59587d8fd1e2f}{car}}=\char`\"{}\char`\"{}, const std\+::string \&\mbox{\hyperlink{struct_car_a514d01a5b4eb806475b3146773158f5f}{driver}}=\char`\"{}\char`\"{})
 \begin{DoxyCompactList}\small\item\em create a racer \end{DoxyCompactList}\item 
-\mbox{\hyperlink{struct_car_af91fbd1e645eb4d5bb1adb689bb07a77}{Car}} (std\+::string \mbox{\hyperlink{struct_car_a64af67b1181815acb2c346d23800990a}{number}}, std\+::string \mbox{\hyperlink{struct_car_ac701a3e86e578fdbfcf59587d8fd1e2f}{car}}=\char`\"{}\char`\"{}, std\+::string \mbox{\hyperlink{struct_car_a514d01a5b4eb806475b3146773158f5f}{driver}}=\char`\"{}\char`\"{})
+\mbox{\hyperlink{struct_car_a14efed2d4473a9a58ec8266507a87c3b}{Car}} (const std\+::string \&\mbox{\hyperlink{struct_car_a64af67b1181815acb2c346d23800990a}{number}}, const std\+::string \&\mbox{\hyperlink{struct_car_ac701a3e86e578fdbfcf59587d8fd1e2f}{car}}=\char`\"{}\char`\"{}, const std\+::string \&\mbox{\hyperlink{struct_car_a514d01a5b4eb806475b3146773158f5f}{driver}}=\char`\"{}\char`\"{})
 \begin{DoxyCompactList}\small\item\em create a racer \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Data Fields}
 \begin{DoxyCompactItemize}
@@ -30,11 +34,11 @@ std\+::string {\bfseries driver} = \char`\"{}\char`\"{}
 a race participant 
 
 \doxysubsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{struct_car_adca9677f66b9be8a1e248ab781f675e0}\label{struct_car_adca9677f66b9be8a1e248ab781f675e0}} 
+\mbox{\Hypertarget{struct_car_a34ad0e0925973da2d52afcd416775ae9}\label{struct_car_a34ad0e0925973da2d52afcd416775ae9}} 
 \index{Car@{Car}!Car@{Car}}
 \index{Car@{Car}!Car@{Car}}
 \doxysubsubsection{\texorpdfstring{Car()}{Car()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily Car\+::\+Car (\begin{DoxyParamCaption}\item[{int}]{number,  }\item[{std\+::string}]{car = {\ttfamily \char`\"{}\char`\"{}},  }\item[{std\+::string}]{driver = {\ttfamily \char`\"{}\char`\"{}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+{\footnotesize\ttfamily Car\+::\+Car (\begin{DoxyParamCaption}\item[{const int}]{number,  }\item[{const std\+::string \&}]{car = {\ttfamily \char`\"{}\char`\"{}},  }\item[{const std\+::string \&}]{driver = {\ttfamily \char`\"{}\char`\"{}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
 
 
 
@@ -49,11 +53,11 @@ create a racer
 {\em driver} & name of the driver (defaults to \char`\"{}\char`\"{}) \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{struct_car_af91fbd1e645eb4d5bb1adb689bb07a77}\label{struct_car_af91fbd1e645eb4d5bb1adb689bb07a77}} 
+\mbox{\Hypertarget{struct_car_a14efed2d4473a9a58ec8266507a87c3b}\label{struct_car_a14efed2d4473a9a58ec8266507a87c3b}} 
 \index{Car@{Car}!Car@{Car}}
 \index{Car@{Car}!Car@{Car}}
 \doxysubsubsection{\texorpdfstring{Car()}{Car()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily Car\+::\+Car (\begin{DoxyParamCaption}\item[{std\+::string}]{number,  }\item[{std\+::string}]{car = {\ttfamily \char`\"{}\char`\"{}},  }\item[{std\+::string}]{driver = {\ttfamily \char`\"{}\char`\"{}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+{\footnotesize\ttfamily Car\+::\+Car (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{number,  }\item[{const std\+::string \&}]{car = {\ttfamily \char`\"{}\char`\"{}},  }\item[{const std\+::string \&}]{driver = {\ttfamily \char`\"{}\char`\"{}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
 
 
 
@@ -72,4 +76,4 @@ create a racer
 
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-src/\mbox{\hyperlink{main_8cc}{main.\+cc}}\end{DoxyCompactItemize}
+src/Car.\+h\end{DoxyCompactItemize}
