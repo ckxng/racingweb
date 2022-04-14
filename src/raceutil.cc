@@ -4,7 +4,8 @@
 
 #include "src/raceutil.h"
 
-bool DoAnyCarsMatch(std::vector<Car *> const &a, std::vector<Car *> const &b) {
+bool DoAnyCarsMatch(std::vector<const Car *> const &a,
+                    std::vector<const Car *> const &b) {
   for (const auto &item_a : a) {
     for (const auto &item_b : b) {
       // cppcheck-suppress useStlAlgorithm

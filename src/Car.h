@@ -16,9 +16,11 @@ struct Car {
    * @param car name of the car (defaults to "")
    * @param driver name of the driver (defaults to "")
    */
-  explicit Car(int number, std::string car = "", std::string driver = "")
-      : car(std::move(car)), driver(std::move(driver)) {
+  explicit Car(const int number, const std::string &car = "",
+               const std::string &driver = "") {
     this->number = std::to_string(number);
+    this->car = car;
+    this->driver = driver;
   }
 
   /**
@@ -27,11 +29,12 @@ struct Car {
    * @param car name of the car (defaults to "")
    * @param driver name of the driver (defaults to "")
    */
-  explicit Car(std::string number, std::string car = "",
-               std::string driver = "")
-      : number(std::move(number)),
-        car(std::move(car)),
-        driver(std::move(driver)) {}
+  explicit Car(const std::string &number, const std::string &car = "",
+               const std::string &driver = "") {
+    this->number = number;
+    this->car = car;
+    this->driver = driver;
+  }
 
   /// @brief alphanumeric car number
   std::string number;

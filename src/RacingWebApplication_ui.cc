@@ -57,12 +57,8 @@ RacingWebApplication::BuildRunContainer() {
   run_title->setHtmlTagName("h1");
 
   // lay out the lineup in a grid
-  lineup_grid_layout =
-      vert_layout->addLayout(std::make_unique<Wt::WGridLayout>());
-
-  // lay out the place indicator in a grid
-  place_grid_layout =
-      vert_layout->addLayout(std::make_unique<Wt::WGridLayout>());
+  lineup_grid_container =
+      vert_layout->addWidget(std::make_unique<Wt::WContainerWidget>());
 
   // add sneak peek of the next heat lineup
   heat_preview_text = vert_layout->addWidget(std::make_unique<Wt::WText>(""));

@@ -17,6 +17,7 @@
 #include <Wt/WText.h>
 #include <Wt/WVBoxLayout.h>
 
+#include <climits>
 #include <memory>
 #include <sstream>
 #include <string>
@@ -57,6 +58,11 @@ class RacingWebApplication : public Wt::WApplication {
   std::unique_ptr<Wt::WContainerWidget> BuildStandingsContainer();
 
   /**
+   * @brief read the current_heat and update the lineup for the race tab
+   */
+  void UpdateLineupContainer();
+
+  /**
    * @brief generates the schedule
    *
    * This method generates schedules where number_of_cars and number_of_lanes
@@ -76,6 +82,13 @@ class RacingWebApplication : public Wt::WApplication {
    * @param heat the current heat where 0 <= heat < schedule.size()
    */
   void SetCurrentHeat(int heat);
+
+  /**
+   * marks the place of a car in the current heat
+   * @param lane which lane the car is in
+   * @param place the place the car came in
+   */
+  void MarkPlace(const Car &car, int lane, int place);
 
   /**
    * @brief determine which heat will run next
@@ -114,7 +127,7 @@ class RacingWebApplication : public Wt::WApplication {
   std::vector<Car> roster;
 
   /// @brief the race schedule, with pointers to cars on the roster
-  std::vector<std::vector<Car *>> schedule;
+  std::vector<std::vector<const Car *>> schedule;
 
   /**
    * @brief the finish line results
@@ -123,7 +136,7 @@ class RacingWebApplication : public Wt::WApplication {
    * generated.  A heat with a result length of zero indicatees a heat which
    * has not been run yet.
    */
-  std::vector<std::vector<Result>> results;
+  std::vector<std::vector<std::unique_ptr<Result>>> results;
 
   /// @brief what heat are we currently on (0-indexed, to match schedule)
   int current_heat = 0;
@@ -131,14 +144,17 @@ class RacingWebApplication : public Wt::WApplication {
   /// @brief the title of the run container
   Wt::WText *run_title;
 
-  /// @brief the grid layout for the current heat lineup
-  Wt::WGridLayout *lineup_grid_layout;
-
-  /// @brief the grid layout for placing cars to indicate results
-  Wt::WGridLayout *place_grid_layout;
+  /// @brief the grid container for the current heat lineup
+  Wt::WContainerWidget *lineup_grid_container;
 
   /// @brief the output text previewing the lineup for the next heat
   Wt::WText *heat_preview_text;
+
+  /// @brief matrix of buttons that indicate finish line places
+  std::vector<std::vector<Wt::WPushButton *>> place_button_matrix;
+
+  /// @brief accept final results
+  Wt::WPushButton *accept_results_button;
 };
 
 #endif  // RACINGWEB_SRC_RACINGWEBAPPLICATION_H_

@@ -14,9 +14,12 @@ struct Result {
    * @param car the car that finished
    * @param place what place that car came in
    */
-  Result(Car *car, int place) : car(car), place(place) {}
+  Result(const Car &car, const int place) {
+    this->car = &car;
+    this->place = place;
+  }
   /// @brief a pointer to the car in question
-  Car *car;
+  const Car *car;
   /// @brief what place did the car come in for this heat
   int place;
 };

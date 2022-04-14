@@ -15,6 +15,7 @@
  * @param b right operand to compare
  * @return true if any cars in either vector are the same object
  */
-bool DoAnyCarsMatch(std::vector<Car *> const &a, std::vector<Car *> const &b);
+bool DoAnyCarsMatch(std::vector<const Car *> const &a,
+                    std::vector<const Car *> const &b);
 
 #endif  // RACINGWEB_SRC_RACEUTIL_H_
