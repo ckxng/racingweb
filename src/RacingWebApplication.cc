@@ -48,12 +48,6 @@ void RacingWebApplication::GenerateSchedule() {
 
   auto schedule_summary{std::stringstream()};
 
-  // calculate lane offsets to mix cars
-  auto lane_offsets{std::vector<int>()};
-  for (int i = 0, offset = 0; i < lanes; i++, offset += i) {
-    lane_offsets.emplace_back(offset);
-  }
-
   // all cars must be created before generating the race schedule
   // take this opportunity to reset the results as well
   roster = std::vector<Car>();
@@ -68,8 +62,7 @@ void RacingWebApplication::GenerateSchedule() {
   for (int i = 0; i < cars; i++) {
     auto heat{std::vector<const Car *>()};
     for (int lane = 0; lane < lanes; lane++) {
-      int const roster_pos = (i + lane_offsets[lane]) % cars;
-      heat.emplace_back(&roster[roster_pos]);
+      heat.emplace_back(&roster[(i + lane) % cars]);
     }
     initial_schedule.emplace_back(heat);
   }

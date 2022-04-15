@@ -6,8 +6,7 @@ Racing Web is an online tool for generating race schedules, and running the race
 
 ## Schedule Generation
 
-This race schedule generation method is inspired by
-the [Young and Pope Perfect-N Chart Generator](http://stanpope.net/ppngen.html).
+This generator attempts to accomplish the following (in priority order) for a points-based derby.
 
 1. Ignore extra lanes when the number of lanes exceeds the number of cars
 2. Each car will race in each lane
@@ -15,6 +14,35 @@ the [Young and Pope Perfect-N Chart Generator](http://stanpope.net/ppngen.html).
 4. All lanes are used in each heat
 5. Heats are re-ordered to _try_ and avoid a car racing in two heats in a row
 6. Car order is offset slightly to encourage cars to race against different opponents
+
+The default race generation method is a simple left rotation, as shown in the following 9 car, 3 lane schedule:
+
+    1 2 3
+    2 3 4
+    3 4 5
+    4 5 6
+    5 6 7
+    6 7 8
+    7 8 9
+    8 9 1
+    9 1 2
+
+The heats are then re-ordered (if possible) to prefer a sequence where cars are not racing in sequential heats. This is
+primarily a benefit to the race operators, but also helps somewhat shuffle cars throughout the duration of the race
+improving racer engagement.
+
+    1 2 3
+    4 5 6
+    7 8 9
+    2 3 4
+    5 6 7
+    8 9 1
+    3 4 5
+    6 7 8
+    9 1 2
+
+However, importing a pre-generated race will also be supported in a future version. This will allow for races generated
+by [Young and Pope Perfect-N Chart Generator](http://stanpope.net/ppngen.html) to be used.
 
 ## Docs
 
