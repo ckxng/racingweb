@@ -1,6 +1,7 @@
 // Copyright (c) 2022 Cameron King.
 // Dual licensed under MIT and GPLv2 with OpenSSL exception.
 // See LICENSE for details.
+/// @file
 
 #ifndef RACINGWEB_SRC_RESULT_H_
 #define RACINGWEB_SRC_RESULT_H_
