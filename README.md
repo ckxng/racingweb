@@ -4,6 +4,10 @@
 
 Racing Web is an online tool for generating race schedules, and running the races live from a computer or smartphone.
 
+## Usage
+
+![Animated Video of App Usage](img/race.gif)
+
 ## Schedule Generation
 
 This generator attempts to accomplish the following (in priority order) for a points-based derby.
@@ -13,7 +17,6 @@ This generator attempts to accomplish the following (in priority order) for a po
 3. The number of heats is the same as the number of cars
 4. All lanes are used in each heat
 5. Heats are re-ordered to _try_ and avoid a car racing in two heats in a row
-6. Car order is offset slightly to encourage cars to race against different opponents
 
 The default race generation method is a simple left rotation, as shown in the following 9 car, 3 lane schedule:
 
@@ -27,8 +30,8 @@ The default race generation method is a simple left rotation, as shown in the fo
     8 9 1
     9 1 2
 
-The heats are then re-ordered (if possible) to prefer a sequence where cars are not racing in sequential heats. This is
-primarily a benefit to the race operators, but also helps somewhat shuffle cars throughout the duration of the race
+The heats are then re-ordered (if possible) to prefer a sequence where cars are not racing in sequential heats.  This is 
+primarily a benefit to the race operators, but also helps somewhat shuffle cars throughout the duration of the race 
 improving racer engagement.
 
     1 2 3
@@ -41,7 +44,7 @@ improving racer engagement.
     6 7 8
     9 1 2
 
-However, importing a pre-generated race will also be supported in a future version. This will allow for races generated
+However, importing a pre-generated race will also be supported in a future version.  This will allow for races generated
 by [Young and Pope Perfect-N Chart Generator](http://stanpope.net/ppngen.html) to be used.
 
 ## Docs
