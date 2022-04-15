@@ -1,103 +1,103 @@
 \hypertarget{_racing_web_application_8h_source}{}\doxysection{Racing\+Web\+Application.\+h}
 \label{_racing_web_application_8h_source}\index{src/RacingWebApplication.h@{src/RacingWebApplication.h}}
-
+\mbox{\hyperlink{_racing_web_application_8h}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{1 \textcolor{comment}{// Copyright (c) 2022 Cameron King.}}
 \DoxyCodeLine{2 \textcolor{comment}{// Dual licensed under MIT and GPLv2 with OpenSSL exception.}}
 \DoxyCodeLine{3 \textcolor{comment}{// See LICENSE for details.}}
-\DoxyCodeLine{4 }
-\DoxyCodeLine{5 \textcolor{preprocessor}{\#ifndef RACINGWEB\_SRC\_RACINGWEBAPPLICATION\_H\_}}
-\DoxyCodeLine{6 \textcolor{preprocessor}{\#define RACINGWEB\_SRC\_RACINGWEBAPPLICATION\_H\_}}
-\DoxyCodeLine{7 }
-\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <Wt/WApplication.h>}}
-\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <Wt/WContainerWidget.h>}}
-\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <Wt/WGridLayout.h>}}
-\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <Wt/WHBoxLayout.h>}}
-\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <Wt/WLineEdit.h>}}
-\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <Wt/WMenuItem.h>}}
-\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <Wt/WPanel.h>}}
-\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <Wt/WPushButton.h>}}
-\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <Wt/WTabWidget.h>}}
-\DoxyCodeLine{17 \textcolor{preprocessor}{\#include <Wt/WText.h>}}
-\DoxyCodeLine{18 \textcolor{preprocessor}{\#include <Wt/WVBoxLayout.h>}}
-\DoxyCodeLine{19 }
-\DoxyCodeLine{20 \textcolor{preprocessor}{\#include <algorithm>}}
-\DoxyCodeLine{21 \textcolor{preprocessor}{\#include <climits>}}
-\DoxyCodeLine{22 \textcolor{preprocessor}{\#include <map>}}
-\DoxyCodeLine{23 \textcolor{preprocessor}{\#include <memory>}}
-\DoxyCodeLine{24 \textcolor{preprocessor}{\#include <sstream>}}
-\DoxyCodeLine{25 \textcolor{preprocessor}{\#include <string>}}
-\DoxyCodeLine{26 \textcolor{preprocessor}{\#include <utility>}}
-\DoxyCodeLine{27 \textcolor{preprocessor}{\#include <vector>}}
-\DoxyCodeLine{28 }
-\DoxyCodeLine{29 \textcolor{preprocessor}{\#include "{}src/Car.h"{}}}
-\DoxyCodeLine{30 \textcolor{preprocessor}{\#include "{}src/Result.h"{}}}
-\DoxyCodeLine{31 \textcolor{preprocessor}{\#include "{}src/raceutil.h"{}}}
-\DoxyCodeLine{32 }
-\DoxyCodeLine{36 \textcolor{keyword}{class }\mbox{\hyperlink{class_racing_web_application}{RacingWebApplication}} : \textcolor{keyword}{public} Wt::WApplication \{}
-\DoxyCodeLine{37  \textcolor{keyword}{public}:}
-\DoxyCodeLine{42   \textcolor{keyword}{explicit} \mbox{\hyperlink{class_racing_web_application_a0d83483000fecd66f59cb2e47090e0a5}{RacingWebApplication}}(\textcolor{keyword}{const} Wt::WEnvironment \&env);}
-\DoxyCodeLine{43 }
-\DoxyCodeLine{44  \textcolor{keyword}{private}:}
-\DoxyCodeLine{49   std::unique\_ptr<Wt::WContainerWidget> BuildSetupContainer();}
-\DoxyCodeLine{50 }
-\DoxyCodeLine{55   std::unique\_ptr<Wt::WContainerWidget> BuildRunContainer();}
-\DoxyCodeLine{56 }
-\DoxyCodeLine{61   std::unique\_ptr<Wt::WContainerWidget> BuildStandingsContainer();}
-\DoxyCodeLine{62 }
-\DoxyCodeLine{66   \textcolor{keywordtype}{void} UpdateLineupContainer();}
-\DoxyCodeLine{67 }
-\DoxyCodeLine{74   std::vector<const Car *> CalculateFinalStandings();}
-\DoxyCodeLine{75 }
-\DoxyCodeLine{79   \textcolor{keywordtype}{void} UpdateStandingsContainer();}
-\DoxyCodeLine{80 }
-\DoxyCodeLine{90   \textcolor{keywordtype}{void} GenerateSchedule();}
-\DoxyCodeLine{91 }
-\DoxyCodeLine{100   \textcolor{keywordtype}{void} SetCurrentHeat(\textcolor{keywordtype}{int} heat);}
-\DoxyCodeLine{101 }
-\DoxyCodeLine{108   \textcolor{keywordtype}{void} FinishRacing();}
-\DoxyCodeLine{109 }
-\DoxyCodeLine{115   \textcolor{keywordtype}{void} MarkPlace(\textcolor{keyword}{const} \mbox{\hyperlink{struct_car}{Car}} \&car, \textcolor{keywordtype}{int} lane, \textcolor{keywordtype}{int} place);}
-\DoxyCodeLine{116 }
-\DoxyCodeLine{121   [[nodiscard]] \textcolor{keywordtype}{int} IdentifyNextHeat() \textcolor{keyword}{const};}
-\DoxyCodeLine{122 }
-\DoxyCodeLine{127   [[nodiscard]] \textcolor{keywordtype}{int} IdentifyHeatOnDeck() \textcolor{keyword}{const};}
-\DoxyCodeLine{128 }
-\DoxyCodeLine{130   Wt::WLineEdit *number\_of\_cars;}
-\DoxyCodeLine{131 }
-\DoxyCodeLine{133   Wt::WLineEdit *number\_of\_lanes;}
-\DoxyCodeLine{134 }
-\DoxyCodeLine{136   Wt::WText *schedule\_text;}
-\DoxyCodeLine{137 }
-\DoxyCodeLine{139   Wt::WTabWidget *tabs;}
-\DoxyCodeLine{140 }
-\DoxyCodeLine{142   Wt::WMenuItem *setup\_tab;}
-\DoxyCodeLine{143 }
-\DoxyCodeLine{145   Wt::WMenuItem *run\_tab;}
-\DoxyCodeLine{146 }
-\DoxyCodeLine{148   Wt::WMenuItem *standings\_tab;}
-\DoxyCodeLine{149 }
-\DoxyCodeLine{151   std::vector<Car> roster;}
-\DoxyCodeLine{152 }
-\DoxyCodeLine{154   std::vector<std::vector<const Car *>> schedule;}
-\DoxyCodeLine{155 }
-\DoxyCodeLine{163   std::vector<std::vector<std::unique\_ptr<Result>>> results;}
-\DoxyCodeLine{164 }
-\DoxyCodeLine{166   \textcolor{keywordtype}{int} current\_heat = 0;}
-\DoxyCodeLine{167 }
-\DoxyCodeLine{169   Wt::WText *run\_title;}
-\DoxyCodeLine{170 }
-\DoxyCodeLine{172   Wt::WContainerWidget *lineup\_container;}
-\DoxyCodeLine{173 }
-\DoxyCodeLine{175   Wt::WContainerWidget *standings\_container;}
-\DoxyCodeLine{176 }
-\DoxyCodeLine{178   Wt::WText *heat\_preview\_text;}
-\DoxyCodeLine{179 }
-\DoxyCodeLine{181   std::vector<std::vector<Wt::WPushButton *>> place\_button\_matrix;}
-\DoxyCodeLine{182 }
-\DoxyCodeLine{184   Wt::WPushButton *accept\_results\_button;}
-\DoxyCodeLine{185 \};}
-\DoxyCodeLine{186 }
-\DoxyCodeLine{187 \textcolor{preprocessor}{\#endif  }\textcolor{comment}{// RACINGWEB\_SRC\_RACINGWEBAPPLICATION\_H\_}}
+\DoxyCodeLine{5 \textcolor{comment}{}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#ifndef RACINGWEB\_SRC\_RACINGWEBAPPLICATION\_H\_}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#define RACINGWEB\_SRC\_RACINGWEBAPPLICATION\_H\_}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <Wt/WApplication.h>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <Wt/WContainerWidget.h>}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <Wt/WGridLayout.h>}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <Wt/WHBoxLayout.h>}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <Wt/WLineEdit.h>}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <Wt/WMenuItem.h>}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <Wt/WPanel.h>}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <Wt/WPushButton.h>}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#include <Wt/WTabWidget.h>}}
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include <Wt/WText.h>}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#include <Wt/WVBoxLayout.h>}}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#include <algorithm>}}
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#include <climits>}}
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#include <map>}}
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#include <memory>}}
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#include <sstream>}}
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#include <utility>}}
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_car_8h}{src/Car.h}}"{}}}
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_result_8h}{src/Result.h}}"{}}}
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{raceutil_8h}{src/raceutil.h}}"{}}}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{37 \textcolor{keyword}{class }\mbox{\hyperlink{class_racing_web_application}{RacingWebApplication}} : \textcolor{keyword}{public} Wt::WApplication \{}
+\DoxyCodeLine{38  \textcolor{keyword}{public}:}
+\DoxyCodeLine{43   \textcolor{keyword}{explicit} \mbox{\hyperlink{class_racing_web_application_a0d83483000fecd66f59cb2e47090e0a5}{RacingWebApplication}}(\textcolor{keyword}{const} Wt::WEnvironment \&env);}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45  \textcolor{keyword}{private}:}
+\DoxyCodeLine{50   std::unique\_ptr<Wt::WContainerWidget> BuildSetupContainer();}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{56   std::unique\_ptr<Wt::WContainerWidget> BuildRunContainer();}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{62   std::unique\_ptr<Wt::WContainerWidget> BuildStandingsContainer();}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{67   \textcolor{keywordtype}{void} UpdateLineupContainer();}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{75   std::vector<const Car *> CalculateFinalStandings();}
+\DoxyCodeLine{76 }
+\DoxyCodeLine{80   \textcolor{keywordtype}{void} UpdateStandingsContainer();}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{91   \textcolor{keywordtype}{void} GenerateSchedule();}
+\DoxyCodeLine{92 }
+\DoxyCodeLine{101   \textcolor{keywordtype}{void} SetCurrentHeat(\textcolor{keywordtype}{int} heat);}
+\DoxyCodeLine{102 }
+\DoxyCodeLine{109   \textcolor{keywordtype}{void} FinishRacing();}
+\DoxyCodeLine{110 }
+\DoxyCodeLine{116   \textcolor{keywordtype}{void} MarkPlace(\textcolor{keyword}{const} \mbox{\hyperlink{struct_car}{Car}} \&car, \textcolor{keywordtype}{int} lane, \textcolor{keywordtype}{int} place);}
+\DoxyCodeLine{117 }
+\DoxyCodeLine{122   [[nodiscard]] \textcolor{keywordtype}{int} IdentifyNextHeat() \textcolor{keyword}{const};}
+\DoxyCodeLine{123 }
+\DoxyCodeLine{128   [[nodiscard]] \textcolor{keywordtype}{int} IdentifyHeatOnDeck() \textcolor{keyword}{const};}
+\DoxyCodeLine{129 }
+\DoxyCodeLine{131   Wt::WLineEdit *number\_of\_cars;}
+\DoxyCodeLine{132 }
+\DoxyCodeLine{134   Wt::WLineEdit *number\_of\_lanes;}
+\DoxyCodeLine{135 }
+\DoxyCodeLine{137   Wt::WText *schedule\_text;}
+\DoxyCodeLine{138 }
+\DoxyCodeLine{140   Wt::WTabWidget *tabs;}
+\DoxyCodeLine{141 }
+\DoxyCodeLine{143   Wt::WMenuItem *setup\_tab;}
+\DoxyCodeLine{144 }
+\DoxyCodeLine{146   Wt::WMenuItem *run\_tab;}
+\DoxyCodeLine{147 }
+\DoxyCodeLine{149   Wt::WMenuItem *standings\_tab;}
+\DoxyCodeLine{150 }
+\DoxyCodeLine{152   std::vector<Car> roster;}
+\DoxyCodeLine{153 }
+\DoxyCodeLine{155   std::vector<std::vector<const Car *>> schedule;}
+\DoxyCodeLine{156 }
+\DoxyCodeLine{164   std::vector<std::vector<std::unique\_ptr<Result>>> results;}
+\DoxyCodeLine{165 }
+\DoxyCodeLine{167   \textcolor{keywordtype}{int} current\_heat = 0;}
+\DoxyCodeLine{168 }
+\DoxyCodeLine{170   Wt::WText *run\_title;}
+\DoxyCodeLine{171 }
+\DoxyCodeLine{173   Wt::WContainerWidget *lineup\_container;}
+\DoxyCodeLine{174 }
+\DoxyCodeLine{176   Wt::WContainerWidget *standings\_container;}
+\DoxyCodeLine{177 }
+\DoxyCodeLine{179   Wt::WText *heat\_preview\_text;}
+\DoxyCodeLine{180 }
+\DoxyCodeLine{182   std::vector<std::vector<Wt::WPushButton *>> place\_button\_matrix;}
+\DoxyCodeLine{183 }
+\DoxyCodeLine{185   Wt::WPushButton *accept\_results\_button;}
+\DoxyCodeLine{186 \};}
+\DoxyCodeLine{187 }
+\DoxyCodeLine{188 \textcolor{preprocessor}{\#endif  }\textcolor{comment}{// RACINGWEB\_SRC\_RACINGWEBAPPLICATION\_H\_}}
 
 \end{DoxyCode}

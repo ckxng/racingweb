@@ -2,8 +2,8 @@ var indexSectionsWithContent =
 {
   0: "cdmnpr",
   1: "cr",
-  2: "m",
-  3: "cr",
+  2: "cmr",
+  3: "cdr",
   4: "cdnp"
 };
 

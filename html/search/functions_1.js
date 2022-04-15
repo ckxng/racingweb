@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['racingwebapplication_0',['RacingWebApplication',['../class_racing_web_application.html#a0d83483000fecd66f59cb2e47090e0a5',1,'RacingWebApplication']]],
-  ['result_1',['Result',['../struct_result.html#a165b96c674c3486df52e860684d48d4f',1,'Result']]]
+  ['doanycarsmatch_0',['DoAnyCarsMatch',['../raceutil_8cc.html#a4419bcf38f3a4fa6eb63c6ec89127508',1,'DoAnyCarsMatch(std::vector&lt; const Car * &gt; const &amp;a, std::vector&lt; const Car * &gt; const &amp;b):&#160;raceutil.cc'],['../raceutil_8h.html#a4419bcf38f3a4fa6eb63c6ec89127508',1,'DoAnyCarsMatch(std::vector&lt; const Car * &gt; const &amp;a, std::vector&lt; const Car * &gt; const &amp;b):&#160;raceutil.cc']]]
 ];
