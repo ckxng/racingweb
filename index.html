@@ -2,17 +2,43 @@
 <p><a href="https://github.com/ckxng/racingweb/actions/workflows/main.yml"><img alt="CI" src="https://github.com/ckxng/racingweb/actions/workflows/main.yml/badge.svg?branch=main"></a></p>
 <h1>Racing Web</h1>
 <p>Racing Web is an online tool for generating race schedules, and running the races live from a computer or smartphone.</p>
+<h2>Usage</h2>
+<p><img alt="Animated Video of App Usage" src="img/race.gif"></p>
 <h2>Schedule Generation</h2>
-<p>This race schedule generation method is inspired by
-the <a href="http://stanpope.net/ppngen.html">Young and Pope Perfect-N Chart Generator</a>.</p>
+<p>This generator attempts to accomplish the following (in priority order) for a points-based derby.</p>
 <ol>
 <li>Ignore extra lanes when the number of lanes exceeds the number of cars</li>
 <li>Each car will race in each lane</li>
 <li>The number of heats is the same as the number of cars</li>
 <li>All lanes are used in each heat</li>
 <li>Heats are re-ordered to <em>try</em> and avoid a car racing in two heats in a row</li>
-<li>Car order is offset slightly to encourage cars to race against different opponents</li>
 </ol>
+<p>The default race generation method is a simple left rotation, as shown in the following 9 car, 3 lane schedule:</p>
+<pre><code>1 2 3
+2 3 4
+3 4 5
+4 5 6
+5 6 7
+6 7 8
+7 8 9
+8 9 1
+9 1 2
+</code></pre>
+<p>The heats are then re-ordered (if possible) to prefer a sequence where cars are not racing in sequential heats.  This is 
+primarily a benefit to the race operators, but also helps somewhat shuffle cars throughout the duration of the race 
+improving racer engagement.</p>
+<pre><code>1 2 3
+4 5 6
+7 8 9
+2 3 4
+5 6 7
+8 9 1
+3 4 5
+6 7 8
+9 1 2
+</code></pre>
+<p>However, importing a pre-generated race will also be supported in a future version.  This will allow for races generated
+by <a href="http://stanpope.net/ppngen.html">Young and Pope Perfect-N Chart Generator</a> to be used.</p>
 <h2>Docs</h2>
 <p>See generated <a href="https://ckxng.github.io/racingweb/html/hierarchy.html">doxygen reference</a></p>
 <h2>Development</h2>
