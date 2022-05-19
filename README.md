@@ -57,44 +57,21 @@ This project is built on [Wt](https://www.webtoolkit.eu/wt), which (at least to 
 Windows. Therefore, this project targets mainly Linux hosts. The primary target is Ubuntu 20.04 AMD64, though if other
 architectures and target environments are feasible, pull requests to improve compatibility are always welcome.
 
-    # build toolchain
-    sudo apt install make cmake automake gcc g++
-
-    # optional development tools
-    sudo apt install gdb doxygen cppcheck clang clang-format clang-tidy llvm valgrind linux-tools-common
-    sudo apt install python3-pip && sudo pip install pre-commit cpplint
-
-    # download source
+        # download source
     git clone --recurse-submodules https://github.com/ckxng/racingweb.git
     cd racingweb
 
     # Wt and dependencies
-    sudo apt install libboost-all-dev libgraphicsmagick-q16-3 libpq-dev libssl-dev libfcgi-dev
-    cd dep/wt
-    mkdir build; cd build
-    cmake ..
-    make
-    make -C examples # optional
-    sudo make install
-    sudo ldconfig
-    cd ..
-
-    # if you will be submitting changes, enable pre-commit
-    pre-commit install
-    pre-commit run
+    ./.devcontainer/install.sh
     
-    # compile racingweb
+    # generate makefiles
     cmake .
 
-## Running
+    # compile racingweb
+    make
 
-Depending on your IDE or build method, the racingweb executable might be located directly inside the git repo, or
-possible under a subdirectory created by CMake. These examples assume that the binary is directly inside the source
-repo, but you can adjust the commands depending on your environment.
-
-    cd racingweb
-    cp -r dep/wt/resources docroot/ # only do this one time
-    ./racingweb --docroot docroot --http-listen localhost:8080
+    # run racingweb
+    ./racingweb --docroot ./docroot/ --http-listen localhost:8080
 
 ## UI Sketches
 

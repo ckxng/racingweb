@@ -7,3 +7,5 @@ Makefile
 racingweb
 docroot/resources
 Testing
+build
+.vscode
