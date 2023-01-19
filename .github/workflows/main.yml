@@ -39,7 +39,7 @@ jobs:
           packages: 'pymdown-extensions'
           extensions: '["pymdownx.extra"]'
       - name: Doxygen Action
-        uses: mattnotmitt/doxygen-action@1.9.3
+        uses: mattnotmitt/doxygen-action@1.9.4
 
       # publish docs
       - name: GitHub Pages action
