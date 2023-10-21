@@ -44,8 +44,10 @@ improving racer engagement.
     6 7 8
     9 1 2
 
-However, importing a pre-generated race will also be supported in a future version.  This will allow for races generated
-by [Young and Pope Perfect-N Chart Generator](http://stanpope.net/ppngen.html) to be used.
+However, FOUR lane races with 4-13 participants are treated in a different manner.  In these cases, the heat configuration
+from [Young and Pope Perfect-N Chart Generator](http://stanpope.net/ppngen.html) is used instead.  When more than 13
+cars are present in the roster, the lane configuration for a 13 car race is used.   Lanes are still 
+shuffled to reduce the instances of a car racing in subsequent heats.
 
 ## Docs
 

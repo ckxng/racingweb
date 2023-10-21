@@ -20,5 +20,5 @@ set_target_properties(WtHttp PROPERTIES IMPORTED_LOCATION ${WtHttp_location})
 
 include_directories(${CMAKE_SOURCE_DIR})
 
-add_executable(racingweb src/main.cc src/RacingWebApplication.cc src/raceutil.cc src/RacingWebApplication_ui.cc)
+add_executable(racingweb src/main.cc src/RacingWebApplication.cc src/raceutil.cc src/pregen.cc src/RacingWebApplication_ui.cc)
 target_link_libraries(racingweb Wt WtHttp)

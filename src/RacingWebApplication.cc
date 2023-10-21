@@ -58,14 +58,19 @@ void RacingWebApplication::GenerateSchedule() {
     results.emplace_back(std::vector<std::unique_ptr<Result>>());
   }
 
-  // generate the race schedule
   auto initial_schedule{std::vector<std::vector<const Car *>>()};
-  for (int i = 0; i < cars; i++) {
-    auto heat{std::vector<const Car *>()};
-    for (int lane = 0; lane < lanes; lane++) {
-      heat.emplace_back(&roster[(i + lane) % cars]);
+  if (lanes == 4 && cars <= 13) {
+    // use pre-generated races for 4 lane tracks up to 13 racers
+    initial_schedule = LoadPreGeneratedSchedule(roster);
+  } else {
+    // generate the race schedule
+    for (int i = 0; i < cars; i++) {
+      auto heat{std::vector<const Car *>()};
+      for (int lane = 0; lane < lanes; lane++) {
+        heat.emplace_back(&roster[(i + lane) % cars]);
+      }
+      initial_schedule.emplace_back(heat);
     }
-    initial_schedule.emplace_back(heat);
   }
 
   // try to arrange the schedule so that cars are not in adjacent heats
@@ -355,7 +360,6 @@ void RacingWebApplication::UpdateStandingsContainer() {
 std::vector<const Car *> RacingWebApplication::CalculateFinalStandings() {
   auto final_standings = std::vector<const Car *>();
   for (const auto &item : roster) {
-    // cppcheck-suppress useStlAlgorithm
     // not transforming
     final_standings.emplace_back(&item);
   }

@@ -29,6 +29,7 @@
 
 #include "src/Car.h"
 #include "src/Result.h"
+#include "src/pregen.h"
 #include "src/raceutil.h"
 
 /**
