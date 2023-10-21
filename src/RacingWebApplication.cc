@@ -360,7 +360,7 @@ void RacingWebApplication::UpdateStandingsContainer() {
 std::vector<const Car *> RacingWebApplication::CalculateFinalStandings() {
   auto final_standings = std::vector<const Car *>();
   for (const auto &item : roster) {
-    // cppcheck-suppress useStlAlgorithm,unmatchedSuppression
+    // cppcheck-suppress[useStlAlgorithm,unmatchedSuppression]
     // not transforming
     final_standings.emplace_back(&item);
   }
