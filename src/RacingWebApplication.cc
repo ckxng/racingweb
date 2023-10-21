@@ -289,8 +289,6 @@ void RacingWebApplication::MarkPlace(const Car &car, const int lane,
   // check if all results are now in
   auto any_results_open = false;
   for (const auto &item : results[current_heat]) {
-    // cppcheck-suppress useStlAlgorithm
-    // only suppress for now, refactor this to use algo AND be readable
     if (!item) {
       any_results_open = true;
       break;
@@ -360,8 +358,6 @@ void RacingWebApplication::UpdateStandingsContainer() {
 std::vector<const Car *> RacingWebApplication::CalculateFinalStandings() {
   auto final_standings = std::vector<const Car *>();
   for (const auto &item : roster) {
-    // cppcheck-suppress[useStlAlgorithm,unmatchedSuppression]
-    // not transforming
     final_standings.emplace_back(&item);
   }
 

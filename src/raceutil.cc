@@ -9,8 +9,6 @@ bool DoAnyCarsMatch(std::vector<const Car *> const &a,
                     std::vector<const Car *> const &b) {
   for (const auto &item_a : a) {
     for (const auto &item_b : b) {
-      // cppcheck-suppress useStlAlgorithm
-      // these loops are trivial
       if (item_a == item_b) {
         return true;
       }
