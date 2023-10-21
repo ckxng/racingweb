@@ -1,9 +1,9 @@
 var indexSectionsWithContent =
 {
-  0: "cdmnpr",
+  0: "bcdlmnpr",
   1: "cr",
-  2: "cmr",
-  3: "cdr",
+  2: "cmpr",
+  3: "bcdlr",
   4: "cdnp"
 };
 

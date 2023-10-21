@@ -1,0 +1,48 @@
+\hypertarget{pregen_8h}{}\doxysection{src/pregen.h File Reference}
+\label{pregen_8h}\index{src/pregen.h@{src/pregen.h}}
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include \char`\"{}src/\+Car.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ std\+::vector$<$ const \mbox{\hyperlink{struct_car}{Car}} $\ast$ $>$ $>$ \mbox{\hyperlink{pregen_8h_ae42ac3f079d74d95ed5b015134b51d99}{Load\+Pre\+Generated\+Schedule}} (const std\+::vector$<$ \mbox{\hyperlink{struct_car}{Car}} $>$ \&roster)
+\item 
+std\+::vector$<$ const \mbox{\hyperlink{struct_car}{Car}} $\ast$ $>$ \mbox{\hyperlink{pregen_8h_a54b1b00b35f66705303223053654e745}{Build\+Pre\+Gen\+Heat}} (const std\+::vector$<$ \mbox{\hyperlink{struct_car}{Car}} $>$ \&roster, const int one, const int two, const int three, const int four)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{pregen_8h_a54b1b00b35f66705303223053654e745}\label{pregen_8h_a54b1b00b35f66705303223053654e745}} 
+\index{pregen.h@{pregen.h}!BuildPreGenHeat@{BuildPreGenHeat}}
+\index{BuildPreGenHeat@{BuildPreGenHeat}!pregen.h@{pregen.h}}
+\doxysubsubsection{\texorpdfstring{BuildPreGenHeat()}{BuildPreGenHeat()}}
+{\footnotesize\ttfamily std\+::vector$<$ const \mbox{\hyperlink{struct_car}{Car}} $\ast$ $>$ Build\+Pre\+Gen\+Heat (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{struct_car}{Car}} $>$ \&}]{roster,  }\item[{const int}]{one,  }\item[{const int}]{two,  }\item[{const int}]{three,  }\item[{const int}]{four }\end{DoxyParamCaption})}
+
+helper function to generate a single heat. used in conjuction with \href{https://stanpope.net/ppngen.html}{\texttt{ https\+://stanpope.\+net/ppngen.\+html}} params one, two, three, four match indexes in the roster vector 
+\begin{DoxyParams}{Parameters}
+{\em one} & the roster vector index of the car to place in lane one \\
+\hline
+{\em two} & the roster vector index of the car to place in lane two \\
+\hline
+{\em three} & the roster vector index of the car to place in lane three \\
+\hline
+{\em four} & the roster vector index of the car to place in lane four \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a heat which can be added to the schedule 
+\end{DoxyReturn}
+\mbox{\Hypertarget{pregen_8h_ae42ac3f079d74d95ed5b015134b51d99}\label{pregen_8h_ae42ac3f079d74d95ed5b015134b51d99}} 
+\index{pregen.h@{pregen.h}!LoadPreGeneratedSchedule@{LoadPreGeneratedSchedule}}
+\index{LoadPreGeneratedSchedule@{LoadPreGeneratedSchedule}!pregen.h@{pregen.h}}
+\doxysubsubsection{\texorpdfstring{LoadPreGeneratedSchedule()}{LoadPreGeneratedSchedule()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::vector$<$ const \mbox{\hyperlink{struct_car}{Car}} $\ast$ $>$ $>$ Load\+Pre\+Generated\+Schedule (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{struct_car}{Car}} $>$ \&}]{roster }\end{DoxyParamCaption})}
+
+spits out a pre-\/generated schedule for 4 lanes using a more optimal pattern 
+\begin{DoxyParams}{Parameters}
+{\em roster} & vector of cars in the race roster \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+completed race schedule as a vector of heats, each heat consisting of a vector of 4 cars 
+\end{DoxyReturn}
